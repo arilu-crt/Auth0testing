@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/arianecoriat/.dotnet/store/|arch|/|tfm|",
+      "/Users/arianecoriat/.nuget/packages"
+    ]
+  }
+}
