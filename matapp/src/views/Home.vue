@@ -22,7 +22,9 @@ export default {
   methods: {
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$auth.loginWithRedirect({
+        redirect_uri: "http://localhost:8080",
+      });
     },
     // Log the user out
     logout() {
