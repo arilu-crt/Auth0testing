@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { AuthenticationGuard } from 'vue-auth0-plugin';
 import Home from '../views/Home.vue'
 import LandingPage from '../views/LandingPage.vue'
-import LoggIn from '../views/LoggIn.vue'
-import SignUp from '../views/SignUp.vue'
 import Listings from '../views/Listings.vue'
 import ListingDetails from '../components/ListingDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
@@ -25,18 +24,6 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
-  },
-
-  {
-    path: '/loggin',
-    name: 'LoggIn',
-    component: LoggIn
-  },
-
-  {
-    path: '/signup',
-    name: 'SignUp',
-    component: SignUp
   },
 
   {
@@ -67,22 +54,29 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    beforeEnter: AuthenticationGuard
   },
   {
     path: '/profile/settings',
     name: 'Settings',
-    component: Settings
+    component: Settings,
+    beforeEnter: AuthenticationGuard
+
   },
   {
     path: '/profile/myposts',
     name: 'MyPosts',
-    component: MyPosts
+    component: MyPosts,
+    beforeEnter: AuthenticationGuard
+
   },
   {
     path: `/profile/:id/listing`,
     name: 'ListingByUser',
-    component: ListingByUser
+    component: ListingByUser,
+    beforeEnter: AuthenticationGuard
+
   },
   {
     path: '/profile/historik',

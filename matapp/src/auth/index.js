@@ -23,7 +23,7 @@ export const useAuth0 = ({
         data() {
             return {
                 loading: true,
-                isAuthenticated: false,
+                authenticated: false,
                 user: {},
                 auth0Client: null,
                 popupOpen: false,
@@ -38,7 +38,7 @@ export const useAuth0 = ({
                 try {
                     await this.auth0Client.loginWithPopup(options, config);
                     this.user = await this.auth0Client.getUser();
-                    this.isAuthenticated = await this.auth0Client.isAuthenticated();
+                    this.authenticated = await this.auth0Client.authenticated();
                     this.error = null;
                 } catch (e) {
                     this.error = e;
@@ -49,7 +49,7 @@ export const useAuth0 = ({
                 }
 
                 this.user = await this.auth0Client.getUser();
-                this.isAuthenticated = true;
+                this.authenticated = true;
             },
             /** Handles the callback when logging in using a redirect */
             async handleRedirectCallback() {
@@ -57,7 +57,7 @@ export const useAuth0 = ({
                 try {
                     await this.auth0Client.handleRedirectCallback();
                     this.user = await this.auth0Client.getUser();
-                    this.isAuthenticated = true;
+                    this.authenticated = true;
                     this.error = null;
                 } catch (e) {
                     this.error = e;
@@ -115,7 +115,7 @@ export const useAuth0 = ({
                 this.error = e;
             } finally {
                 // Initialize our internal authentication state
-                this.isAuthenticated = await this.auth0Client.isAuthenticated();
+                this.authenticated = await this.auth0Client.authenticated();
                 this.user = await this.auth0Client.getUser();
                 this.loading = false;
             }

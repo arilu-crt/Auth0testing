@@ -6,11 +6,11 @@
   <div class="background-landing">
     <section v-if="!$auth.loading" class="landing-textarea">
       <div class="landing-bubble">
-        <h3 v-if="!$auth.isAuthenticated" @click="logout">Test LogOut</h3>
+        <h3 v-if="$auth.authenticated" @click="logout">Test LogOut</h3>
       </div>
 
       <div class="landing-bubble">
-        <h3 v-if="!$auth.isAuthenticated" @click="login">Log in here</h3>
+        <h3 v-if="!$auth.authenticated" @click="login">Log in here</h3>
       </div>
     </section>
   </div>
